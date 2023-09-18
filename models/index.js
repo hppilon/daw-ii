@@ -14,5 +14,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.cachorros = require("./cachorro.model.js")(sequelize, Sequelize);
+db.pessoas = require("./pessoa.model.js")(sequelize, Sequelize);
 
 module.exports = db;
