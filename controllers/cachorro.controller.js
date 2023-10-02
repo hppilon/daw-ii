@@ -17,6 +17,7 @@ exports.create = (req, res) => {
     nome: req.body.nome,
     idade: req.body.idade,
     raca: req.body.raca,
+    pessoaId: req.body.pessoaId,
   };
 
   // Save Cachorro in the database
@@ -52,7 +53,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Cachorro.findByPk(id)
+  Cachorro.findByPk(id, { include: "pessoa" })
     .then((data) => {
       if (data) {
         res.send(data);

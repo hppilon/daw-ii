@@ -51,9 +51,10 @@ exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Pessoa.findByPk(id)
-    .then((data) => {
-      if (data) {
-        res.send(data);
+    .then(async (pessoaEncontrada) => {
+      if (pessoaEncontrada) {
+        let cachorros = await pessoaEncontrada.getCachorros();
+        res.send({ pessoaEncontrada, cachorros });
       } else {
         res.status(404).send({
           message: `Cannot find Pessoa with id=${id}.`,
